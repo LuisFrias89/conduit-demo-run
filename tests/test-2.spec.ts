@@ -14,7 +14,6 @@ test('test', async ({ page }) => {
   await page.locator('.pdp_sizepicker__label-toggle').click();
   await page.getByRole('button', { name: 'Size: XS' }).click();
   await page.getByRole('button', { name: 'add to bag' }).click();
-  //await page.waitForLoadState('networkidle');
   await expect(page.locator('.header__minicart-overlay.utility-overlay.toggle--active.set--loaded')).toBeVisible();
   await page.getByRole('button', { name: 'Close shopping cart panel' }).click();
   
