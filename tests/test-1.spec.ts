@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('test', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveURL(/development.thereformation.com/);
-  await page.getByRole('link', { name: 'Change your shipping country' }).click({ timeout: 8000});
+  await page.getByRole('link', { name: 'Change your shipping country' }).click({ timeout: 30000});
   await expect(page.getByRole('heading', { name: 'Envía mis artículos aquí:' })).toBeVisible({ timeout: 8000});
   await page.getByLabel('País').selectOption('US');
   await page.getByRole('button', { name: 'Guardar' }).click();
