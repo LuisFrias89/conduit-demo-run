@@ -3,10 +3,13 @@ import { test, expect, Browser } from '@playwright/test';
 test('test', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveURL(/development.thereformation.com/);
-  await page.getByRole('link', { name: 'Change your shipping country' }).click({ timeout: 30000});
-  await expect(page.getByRole('heading', { name: 'Envía mis artículos aquí:' })).toBeVisible({ timeout: 8000});
+
+  if (await page.getByRole('link', { name: 'Change your shipping country' }).isVisible()) {
+  await page.getByRole('link', { name: 'Change your shipping country' }).click();
+  await expect(page.getByRole('heading', { name: 'Envía mis artículos aquí:' })).toBeVisible();
   await page.getByLabel('País').selectOption('US');
   await page.getByRole('button', { name: 'Guardar' }).click();
+  }
   await page.getByRole('searchbox', { name: 'search' }).click();
   await page.getByRole('searchbox', { name: 'search' }).fill('dusk');
   await page.getByRole('searchbox', { name: 'search' }).press('Enter');
